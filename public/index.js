@@ -184,9 +184,24 @@ rentals.forEach((item, index) => {
 	const date2 = new Date(item.pickupDate);
 	const diffTime = Math.abs(date2 - date1);
 	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) + 1);
+	
 	//console.log(diffDays);
 	
 	//item.price = (item.returnDate - item.pickupDate + 1)*priceDay + priceKm*item.distance; //rentals[index].price ou item.price //diffTime
 	item.price = (diffDays)*priceDay + priceKm*item.distance; //rentals[index].price ou item.price //diffTime
+	
+	if (diffTime >= 10)
+	{
+		item.price = item.price * 0.5;
+	}
+	else if (diffTime >= 4)
+	{
+		item.price = item.price * 0.7;
+	}
+	else if (diffTime >= 1)
+	{
+		item.price = item.price * 0.9;
+	}
+	
 	console.log(item.price);
 })
