@@ -204,4 +204,12 @@ rentals.forEach((item, index) => {
 	}
 	
 	console.log(item.price);
+	
+	item.commission.insurance = item.price * 0.15;
+	item.commission.treasury = diffDays;
+	item.commission.virtuo = (item.price * 0.15) - item.commission.treasury;
+	
+	console.log(item.commission.insurance);
+	console.log(item.commission.treasury);
+	console.log(item.commission.virtuo);
 })
