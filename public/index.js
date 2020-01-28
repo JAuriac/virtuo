@@ -190,6 +190,11 @@ rentals.forEach((item, index) => {
 	//item.price = (item.returnDate - item.pickupDate + 1)*priceDay + priceKm*item.distance; //rentals[index].price ou item.price //diffTime
 	item.price = (diffDays)*priceDay + priceKm*item.distance; //rentals[index].price ou item.price //diffTime
 	
+	if (item.options.deductibleReduction == true)
+	{
+		item.price = item.price + 4*diffDays;
+	}
+	
 	if (diffTime >= 10)
 	{
 		item.price = item.price * 0.5;
@@ -203,13 +208,15 @@ rentals.forEach((item, index) => {
 		item.price = item.price * 0.9;
 	}
 	
+	console.log("rental")
 	console.log(item.price);
 	
 	item.commission.insurance = item.price * 0.15;
 	item.commission.treasury = diffDays;
 	item.commission.virtuo = (item.price * 0.15) - item.commission.treasury;
+
 	
-	console.log(item.commission.insurance);
-	console.log(item.commission.treasury);
-	console.log(item.commission.virtuo);
+	//console.log(item.commission.insurance);
+	//console.log(item.commission.treasury);
+	//console.log(item.commission.virtuo);
 })
